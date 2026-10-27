@@ -17,7 +17,10 @@ function mergeServerLists(prev, newList) {
   const kept = newList.filter((s) => currentIds.has(s.id))
   const added = newList.filter((s) => !currentIds.has(s.id)).map((s) => ({ ...s, _entering: true }))
   const removed = prev.filter((s) => !newIds.has(s.id)).map((s) => ({ ...s, _exiting: true }))
-  const keptAndAdded = [...kept, ...added].sort((a, b) => (a.port ?? 0) - (b.port ?? 0))
+  const keptAndAdded = [...kept, ...added].sort((a, b) => {
+    if (a.isDev !== b.isDev) return a.isDev ? -1 : 1
+    return (a.port ?? 0) - (b.port ?? 0)
+  })
   return [...keptAndAdded, ...removed]
 }
 

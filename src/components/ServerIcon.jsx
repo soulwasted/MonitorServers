@@ -12,6 +12,7 @@ import {
   Command,
   FileCode,
   Database,
+  Terminal,
   HelpCircle,
 } from 'lucide-react'
 
@@ -28,6 +29,7 @@ const ICON_MAP = {
   command: Command,
   'file-code': FileCode,
   database: Database,
+  terminal: Terminal,
 }
 
 /**
